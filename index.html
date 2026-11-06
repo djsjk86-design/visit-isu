@@ -46,7 +46,7 @@
         }
 
         .header h1 span {
-            color: #ff4757;
+            color: #c92b3c;
         }
 
         .header p {
@@ -62,7 +62,7 @@
 
         .form-group label {
             display: block;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: #334155;
             margin-bottom: 10px;
@@ -80,7 +80,7 @@
         }
 
         .input-control:focus {
-            border-color: #ff4757;
+            border-color: #c92b3c;
             background-color: #ffffff;
             box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.1);
         }
@@ -116,7 +116,7 @@
             background: #f1f5f9;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             color: #475569;
             cursor: pointer;
@@ -130,8 +130,8 @@
 
         .selectable-box input[type="radio"]:checked + .box-label {
             background-color: rgba(255, 71, 87, 0.06);
-            border-color: #ff4757;
-            color: #ff4757;
+            border-color: #c92b3c;
+            color: #c92b3c;
             font-weight: 700;
         }
 
@@ -144,7 +144,7 @@
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: #ff4757;
+            background: #c92b3c;
             color: white;
             border: none;
             border-radius: 14px;
@@ -201,6 +201,24 @@
             font-size: 60px;
             margin-bottom: 20px;
         }
+
+        .form-guide { color: #475569; font-size: 16px; line-height: 1.6; margin-bottom: 28px; padding: 14px 16px; background: #f1f5f9; border-radius: 12px; }
+        .detail-label { font-size: 16px; font-weight: 700; color: #334155; margin-bottom: 10px; }
+        .field-error { margin-top: 10px; color: #b42318; font-size: 16px; line-height: 1.5; font-weight: 600; }
+        .input-control[aria-invalid="true"] { border-color: #b42318; }
+        .selectable-box input:focus-visible + .box-label, .submit-btn:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 3px; }
+        .form-group, .search-detail { scroll-margin-top: 24px; }
+        .box-label { min-height: 48px; line-height: 1.5; word-break: keep-all; }
+        @media (max-width: 480px) {
+            body { padding: 10px; }
+            .container { padding: 28px 18px; }
+            .header h1 { font-size: 24px; }
+            .box-label { padding: 14px 10px; }
+            .path-list .box-label { padding-left: 14px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+        }
     </style>
 </head>
 <body>
@@ -211,7 +229,8 @@
             <p>안녕하세요! 바운드짐 이수점입니다. 😊<br>당신의 건강하고 행복한 삶을 진심으로 응원합니다.</p>
         </div>
 
-        <form id="visitForm">
+        <form id="visitForm" novalidate>
+            <p class="form-guide">모든 문항은 필수입니다. 예약·방문 경로에 따라 표시되는 추가 항목도 작성해 주세요.</p>
             <div class="form-group">
                 <label for="userName">1. 성함을 입력해 주세요</label>
                 <input type="text" id="userName" name="userName" maxlength="40" autocomplete="off" class="input-control" placeholder="홍길동" required>
@@ -266,16 +285,17 @@
 
                 <!-- [2단계] 예약 후 방문 선택 시 나타나는 예약 경로 -->
                 <div class="search-detail" id="reservationPathBox" style="margin-top: 12px; padding-left: 0;">
+                    <p class="detail-label" id="reservePathLabel">예약 경로를 선택해 주세요</p>
                     <div class="time-grid" style="gap: 8px;">
-                        <div class="selectable-box"><input type="radio" name="reservePath" value="네이버예약" aria-label="네이버예약"><span class="box-label" style="padding:12px; font-size:13px;">네이버예약</span></div>
-                        <div class="selectable-box"><input type="radio" name="reservePath" value="톡톡예약" aria-label="톡톡예약"><span class="box-label" style="padding:12px; font-size:13px;">톡톡예약</span></div>
-                        <div class="selectable-box"><input type="radio" name="reservePath" value="전화예약" aria-label="전화예약"><span class="box-label" style="padding:12px; font-size:13px;">전화예약</span></div>
-                        <div class="selectable-box"><input type="radio" name="reservePath" value="카톡예약" aria-label="카톡예약"><span class="box-label" style="padding:12px; font-size:13px;">카톡 예약</span></div>
-                        <div class="selectable-box" style="grid-column: span 2;"><input type="radio" name="reservePath" value="기타" id="reserveEtcRadio" aria-label="기타"><span class="box-label" style="padding:12px; font-size:13px;">기타 예약 경로</span></div>
+                        <div class="selectable-box"><input type="radio" name="reservePath" value="네이버예약" aria-label="네이버예약"><span class="box-label" style="padding:12px; font-size:16px;">네이버예약</span></div>
+                        <div class="selectable-box"><input type="radio" name="reservePath" value="톡톡예약" aria-label="톡톡예약"><span class="box-label" style="padding:12px; font-size:16px;">톡톡예약</span></div>
+                        <div class="selectable-box"><input type="radio" name="reservePath" value="전화예약" aria-label="전화예약"><span class="box-label" style="padding:12px; font-size:16px;">전화예약</span></div>
+                        <div class="selectable-box"><input type="radio" name="reservePath" value="카톡예약" aria-label="카톡예약"><span class="box-label" style="padding:12px; font-size:16px;">카톡 예약</span></div>
+                        <div class="selectable-box" style="grid-column: span 2;"><input type="radio" name="reservePath" value="기타" id="reserveEtcRadio" aria-label="기타"><span class="box-label" style="padding:12px; font-size:16px;">기타 예약 경로</span></div>
                     </div>
 
                     <!-- [3단계] 기타 선택 시 나타나는 직접 입력 창 -->
-                    <input type="text" id="reserveEtcInput" name="reserveEtcInput" maxlength="100" class="input-control" placeholder="예약 경로를 직접 입력해주세요" style="padding:12px; font-size:14px; display:none; margin-top:8px;">
+                    <input type="text" id="reserveEtcInput" aria-label="기타 예약 경로" name="reserveEtcInput" maxlength="100" class="input-control" placeholder="예약 경로를 직접 입력해주세요" style="padding:12px; font-size:16px; display:none; margin-top:8px;">
                 </div>
             </div>
             <!-- ▲▲▲ 5번 문항: 수정된 부분 끝 ▲▲▲ -->
@@ -297,14 +317,15 @@
                     </div>
 
                     <div class="search-detail" id="searchDetailBox">
+                        <p class="detail-label" id="searchKeywordLabel">검색한 단어를 선택해 주세요</p>
                         <div class="time-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 10px; gap: 8px;">
-                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수 헬스장" aria-label="이수 헬스장"><span class="box-label" style="padding:12px; font-size:13px;">#이수 헬스장</span></div>
-                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수역 헬스장" aria-label="이수역 헬스장"><span class="box-label" style="padding:12px; font-size:13px;">#이수역 헬스장</span></div>
-                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="근처 헬스장" aria-label="근처 헬스장"><span class="box-label" style="padding:12px; font-size:13px;">#근처 헬스장</span></div>
-                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수 PT" aria-label="이수 PT"><span class="box-label" style="padding:12px; font-size:13px;">#이수 PT</span></div>
-                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="기타검색어" id="etcRadio" aria-label="기타검색어"><span class="box-label" style="padding:12px; font-size:13px;">기타검색어</span></div>
+                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수 헬스장" aria-label="이수 헬스장"><span class="box-label" style="padding:12px; font-size:16px;">#이수 헬스장</span></div>
+                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수역 헬스장" aria-label="이수역 헬스장"><span class="box-label" style="padding:12px; font-size:16px;">#이수역 헬스장</span></div>
+                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="근처 헬스장" aria-label="근처 헬스장"><span class="box-label" style="padding:12px; font-size:16px;">#근처 헬스장</span></div>
+                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="이수 PT" aria-label="이수 PT"><span class="box-label" style="padding:12px; font-size:16px;">#이수 PT</span></div>
+                            <div class="selectable-box"><input type="radio" name="searchKeyword" value="기타검색어" id="etcRadio" aria-label="기타검색어"><span class="box-label" style="padding:12px; font-size:16px;">기타검색어</span></div>
                         </div>
-                        <input type="text" id="etcInput" name="etcInput" maxlength="100" class="input-control" placeholder="검색어를 직접 입력해주세요" style="padding:12px; font-size:14px; display:none;">
+                        <input type="text" id="etcInput" aria-label="기타 검색어" name="etcInput" maxlength="100" class="input-control" placeholder="검색어를 직접 입력해주세요" style="padding:12px; font-size:16px; display:none;">
                     </div>
 
                     <div class="selectable-box">
@@ -320,7 +341,7 @@
                         <span class="box-label">✏️ 기타</span>
                     </div>
                     <div class="search-detail" id="inboundEtcBox">
-                        <input type="text" id="inboundEtcInput" name="inboundEtcInput" maxlength="100" class="input-control" placeholder="알게 된 경로를 직접 입력해주세요" style="padding:12px; font-size:14px;">
+                        <input type="text" id="inboundEtcInput" aria-label="알게 된 기타 경로" name="inboundEtcInput" maxlength="100" class="input-control" placeholder="알게 된 경로를 직접 입력해주세요" style="padding:12px; font-size:16px;">
                     </div>
                 </div>
             </div>
@@ -355,8 +376,8 @@
                         <span class="box-label">🌙 저녁 피크 (18시~22시)</span>
                     </div>
                     <div class="selectable-box">
-                        <input type="radio" name="workoutTime" value="23시~24시" aria-label="23시~24시">
-                        <span class="box-label">🌌 심야 시간 (23시~24시)</span>
+                        <input type="radio" name="workoutTime" value="22시~24시" aria-label="22시~24시">
+                        <span class="box-label">🌌 심야 시간 (22시~24시)</span>
                     </div>
                 </div>
             </div>
@@ -364,7 +385,7 @@
             <button type="submit" class="submit-btn">작성 완료하고 상담 시작하기 🚀</button>
         </form>
 
-        <div id="statusOverlay" class="overlay">
+        <div id="statusOverlay" class="overlay" role="status" aria-live="polite">
             <div id="loadingState">
                 <div class="spinner"></div>
                 <h3 style="font-size: 20px; font-weight: 700;">방명록을 안전하게 저장하고 있습니다...</h3>
@@ -504,7 +525,95 @@
             submitButton.textContent = submitButtonText;
         }
 
-        // 폼 제출 시 구글 시트로 연동하는 대망의 코드
+
+        // 오류는 문항 바로 아래 표시하고, 입력값과 기존 전송 필드는 유지합니다.
+        const fieldRules = [
+            ['userName', '성함을 입력해 주세요.'],
+            ['gender', '성별을 선택해 주세요.'],
+            ['age', '연령대를 선택해 주세요.'],
+            ['userPhone', '연락처를 정확히 입력해 주세요. 예: 010-1234-5678'],
+            ['reservationStatus', '예약 여부를 선택해 주세요.'],
+            ['reservePath', '예약 경로를 선택해 주세요.'],
+            ['reserveEtcInput', '기타 예약 경로를 직접 입력해 주세요.'],
+            ['inbound', '알게 된 경로를 선택해 주세요.'],
+            ['searchKeyword', '검색한 단어를 선택해 주세요.'],
+            ['etcInput', '기타 검색어를 직접 입력해 주세요.'],
+            ['inboundEtcInput', '알게 된 경로를 직접 입력해 주세요.'],
+            ['product', '관심 있는 상품을 선택해 주세요.'],
+            ['workoutTime', '운동 시간대를 선택해 주세요.']
+        ].map(([name, message]) => {
+            const controls = Array.from(visitForm.querySelectorAll('input[name="' + name + '"]'));
+            const first = controls[0];
+            const isRadio = first.type === 'radio';
+            const host = isRadio ? first.closest('.radio-grid, .time-grid, .path-list') : first;
+            const label = document.getElementById(name + 'Label') || first.closest('.form-group').querySelector('label');
+            if (!label.id) label.id = name + 'Label';
+            if (isRadio) {
+                host.setAttribute('role', name === 'inbound' ? 'group' : 'radiogroup');
+                host.setAttribute('aria-labelledby', label.id);
+            }
+            const error = document.createElement('p');
+            error.id = name + 'Error';
+            error.className = 'field-error';
+            error.hidden = true;
+            error.setAttribute('aria-live', 'polite');
+            host.after(error);
+            controls.forEach(control => control.setAttribute('aria-describedby', error.id));
+            return {name, message, controls, error, host};
+        });
+        const submitError = document.createElement('p');
+        submitError.id = 'submitError';
+        submitError.className = 'field-error';
+        submitError.hidden = true;
+        submitError.tabIndex = -1;
+        submitError.setAttribute('role', 'alert');
+        submitButton.before(submitError);
+
+        function selected(name) {
+            return visitForm.querySelector('input[name="' + name + '"]:checked')?.value || '';
+        }
+        function validationErrors() {
+            const reserved = selected('reservationStatus') === '예약 후 방문';
+            const searched = selected('inbound') === '인터넷검색';
+            const needed = {
+                reservePath: reserved,
+                reserveEtcInput: reserved && selected('reservePath') === '기타',
+                searchKeyword: searched,
+                etcInput: searched && selected('searchKeyword') === '기타검색어',
+                inboundEtcInput: selected('inbound') === '기타'
+            };
+            return fieldRules.filter(rule => {
+                if (needed[rule.name] === false) return false;
+                if (rule.name === 'userPhone') return !/^\d{10,11}$/.test(rule.controls[0].value.replace(/[^0-9]/g, ''));
+                return rule.controls[0].type === 'radio' ? !selected(rule.name) : !rule.controls[0].value.trim();
+            });
+        }
+        function renderErrors(errors, showAll = false) {
+            fieldRules.forEach(rule => {
+                const invalid = errors.includes(rule) && (showAll || !rule.error.hidden);
+                rule.error.hidden = !invalid;
+                rule.error.textContent = invalid ? rule.message : '';
+                rule.controls.forEach(control => {
+                    if (invalid) control.setAttribute('aria-invalid', 'true');
+                    else control.removeAttribute('aria-invalid');
+                });
+            });
+        }
+        function showSubmitError(message) {
+            submitError.textContent = message;
+            submitError.hidden = false;
+            submitError.focus({preventScroll: true});
+            submitError.scrollIntoView({behavior: 'auto', block: 'center'});
+        }
+        function refreshErrors() {
+            renderErrors(validationErrors());
+            submitError.hidden = true;
+            submitError.textContent = '';
+        }
+        visitForm.addEventListener('input', refreshErrors);
+        visitForm.addEventListener('change', refreshErrors);
+
+        // 기존 방명록 저장 및 중복 접수 방지 흐름
         visitForm.addEventListener('submit', async function(e) {
             e.preventDefault(); // 기본 새로고침 방지
 
@@ -512,55 +621,14 @@
                 return;
             }
 
-             // 예약 후 방문을 선택했는데 예약 경로를 선택하지 않은 경우 막기
-            const reservationStatus = document.querySelector('input[name="reservationStatus"]:checked');
-            const reservePath = document.querySelector('input[name="reservePath"]:checked');
-
-            if (reservationStatus && reservationStatus.value === "예약 후 방문" && !reservePath) {
-                alert("예약 후 방문을 선택하셨다면 예약 경로를 선택해주세요.");
-                return;
-            }
-
-            // 예약 경로에서 기타를 선택했는데 직접 입력하지 않은 경우 막기
-            const reserveEtcInput = document.getElementById('reserveEtcInput');
-
-            if (reservePath && reservePath.value === "기타" && reserveEtcInput.value.trim() === "") {
-                alert("기타 예약 경로를 직접 입력해주세요.");
-                reserveEtcInput.focus();
-                return;
-            }
-
-            // 인터넷검색을 선택했는데 검색 키워드를 선택하지 않은 경우 막기
-            const inbound = document.querySelector('input[name="inbound"]:checked');
-            const searchKeyword = document.querySelector('input[name="searchKeyword"]:checked');
-            const inboundEtcInput = document.getElementById('inboundEtcInput');
-
-            if (inbound && inbound.value === "인터넷검색" && !searchKeyword) {
-                alert("인터넷검색을 선택하셨다면 검색 키워드를 선택해주세요.");
-                return;
-            }
-
-            if (inbound && inbound.value === "기타" && inboundEtcInput.value.trim() === "") {
-                alert("기타 경로를 직접 입력해주세요.");
-                inboundEtcInput.focus();
-                return;
-            }
-
-            // 검색 키워드에서 기타를 선택했는데 직접 입력하지 않은 경우 막기
-            const etcInput = document.getElementById('etcInput');
-
-            if (searchKeyword && searchKeyword.value === "기타검색어" && etcInput.value.trim() === "") {
-                alert("기타 검색어를 직접 입력해주세요.");
-                etcInput.focus();
-                return;
-            }
-
-            const phoneInput = document.getElementById('userPhone');
-            const phoneNumber = phoneInput.value.replace(/[^0-9]/g, '');
-
-            if (phoneNumber.length < 10 || phoneNumber.length > 11) {
-                alert("연락처를 정확히 입력해주세요. 예: 010-1234-5678");
-                phoneInput.focus();
+            const errors = validationErrors();
+            renderErrors(errors, true);
+            submitError.hidden = true;
+            submitError.textContent = '';
+            if (errors.length) {
+                const first = errors[0];
+                first.controls[0].focus({preventScroll: true});
+                (first.host.closest('.search-detail') || first.host.closest('.form-group')).scrollIntoView({behavior: 'auto', block: 'center'});
                 return;
             }
 
@@ -587,7 +655,7 @@
             } catch (_) {
                 overlay.style.display = 'none';
                 resetSubmitState();
-                alert('접수 준비에 실패했습니다. 인터넷 연결을 확인한 후 다시 눌러주세요.');
+                showSubmitError('접수 준비에 실패했습니다. 인터넷 연결을 확인한 후 다시 눌러주세요. 입력 내용은 유지됩니다.');
                 return;
             }
 
@@ -628,22 +696,29 @@
                         toggleSearchInput(false);
                         toggleInboundEtcInput(false);
                         toggleReservation(false); // 폼 리셋 시 새로 만든 5번 숨김처리
+                        renderErrors([]);
+                        submitError.hidden = true;
                         resetSubmitState();
+                        document.getElementById('userName').focus({preventScroll: true});
+                        document.getElementById('mainHeader').scrollIntoView({behavior: 'auto', block: 'start'});
                     }, 5000);
                 } else {
-                    alert('저장 중 오류가 발생했습니다. 직원에게 문의해주세요. 에러: ' + (data.error || '알 수 없는 오류'));
+                    overlay.style.display = 'none';
+                    showSubmitError('저장하지 못했습니다. 입력 내용을 확인한 후 다시 눌러주세요. 계속되면 직원에게 알려주세요.');
                     overlay.style.display = 'none';
                     resetSubmitState();
                 }
             })
             .catch(error => {
                 clearTimeout(timeoutId);
-                console.error('Error:', error);
+                console.error('Visit submission failed:', error.name);
+                overlay.style.display = 'none';
 
                 if (error.name === 'AbortError') {
-                    alert('저장 결과를 확인하지 못했습니다. 입력 내용을 유지한 채 다시 눌러주세요. 같은 접수는 한 번만 저장됩니다.');
+                    showSubmitError('저장 결과를 확인하지 못했습니다. 다시 눌러주세요. 입력 내용은 유지되며 같은 접수는 한 번만 저장됩니다.');
                 } else {
-                    alert(error.message || '네트워크 연결 확인이 필요합니다.');
+                    overlay.style.display = 'none';
+                    showSubmitError('저장 결과를 확인하지 못했습니다. 인터넷 연결을 확인한 후 다시 눌러주세요. 입력 내용은 유지되며 같은 접수는 한 번만 저장됩니다.');
                 }
 
                 overlay.style.display = 'none';
